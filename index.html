@@ -607,8 +607,23 @@ details ul{padding-left:1.1em}
   .wrapP{margin:0}
   .phone{width:100%;height:100dvh;border:0;border-radius:0;box-shadow:none}
   .sky{padding-top:max(16px,env(safe-area-inset-top))}
-  .kid,.panel,.kid-label,.elder-label,.caption{display:none}
+  .panel,.kid-label,.elder-label,.caption{display:none}
+  .kid{display:none}
+  body{padding-bottom:0}
+  .phone{height:calc(100dvh - 64px - env(safe-area-inset-bottom))}
+  body.see-kid .wrapP:first-of-type{display:none}
+  body.see-kid .kid{display:block;width:100%;height:calc(100dvh - 64px - env(safe-area-inset-bottom));border:0;border-radius:0;box-shadow:none;margin:0;font-size:16px}
+  body.see-kid .kid .k-top{padding-top:max(18px,env(safe-area-inset-top))}
 }
+
+.who-switch{display:none;position:fixed;left:0;right:0;bottom:0;z-index:200;height:calc(64px + env(safe-area-inset-bottom));padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:#1B1F2A;gap:8px}
+.who-switch button{flex:1;border-radius:14px;color:#C9D2E6;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;position:relative}
+.who-switch button[aria-pressed="true"]{background:#fff;color:#1B1F2A}
+.who-switch .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:14px;font-weight:900}
+.who-switch .dot{position:static;min-width:20px;height:20px;border-radius:10px;background:var(--sos);color:#fff;font-size:12px;display:none;place-items:center;padding:0 6px;margin-left:-2px}
+.who-switch .dot.on{display:grid}
+@media (max-width:480px){.who-switch{display:flex}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 </style>
@@ -945,10 +960,14 @@ details ul{padding-left:1.1em}
       <li>晚上 9 点给老人一句鼓励，给子女一页小结，子女不用一条条翻消息。</li>
     </ul>
   </details>
-  <p class="hint">用手机浏览器打开这个文件，会自动变成全屏 App 的样子，只显示老人端。传到网上之后，可以"添加到主屏幕"。</p>
+  <p class="hint">用手机打开时，屏幕底部可以在“妈妈的手机”和“晓梅的手机”之间切换。传到网上之后，可以“添加到主屏幕”。</p>
 </aside>
 
 <div class="caption" id="caption" aria-live="polite"></div>
+<nav class="who-switch" id="whoSwitch" aria-label="切换手机">
+  <button data-who="mom" aria-pressed="true"><span class="av" style="background:#8A6F5A">秀</span>妈妈的手机</button>
+  <button data-who="kid" aria-pressed="false"><span class="av" style="background:#B4442E">梅</span>晓梅的手机<span class="dot" id="whoDot"></span></button>
+</nav>
 
 
 
@@ -3674,6 +3693,7 @@ $("#dIdle").onclick=()=>{if(!playing){if(!settings.care)return toast("这个提�
 let bannerTimer;
 function push(title,text,kind){
   events.unshift({t:now,title,text,kind:kind||"green"});
+  if(!document.body.classList.contains("see-kid")){kidNew++;const d=$("#whoDot");if(d){d.textContent=kidNew;d.classList.add("on");}}
   if(kidTab!=="log")unread++;
   const b=$("#banner");b.className="banner"+(kind==="red"?" red":"");
   b.innerHTML=`<b><span>今日 · 妈妈</span><span>${hm(now)}</span></b><strong>${title}</strong>${text}`;
@@ -3712,6 +3732,10 @@ function renderKid(){
   }else{h=`<div class="kcard">${lines(events)}</div>`;}
   $("#kBody").innerHTML=h;
 }
+let kidNew=0;
+function seeWho(w){document.body.classList.toggle("see-kid",w==="kid");$$("[data-who]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.who===w));
+  if(w==="kid"){kidNew=0;$("#whoDot").classList.remove("on");renderKid();}window.scrollTo(0,0);}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-who]");if(b)seeWho(b.dataset.who);});
 document.addEventListener("click",e=>{const t=e.target.closest("[data-ktab]");if(t){kidTab=t.dataset.ktab;if(kidTab==="log")unread=0;renderKid();}
   if(e.target.closest("[data-kidcall]"))incoming();
   if(e.target.closest("[data-kidmsg]")){sendMsg();toast("晓梅发来一条留言");home();}});
