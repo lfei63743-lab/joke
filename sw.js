@@ -1,5 +1,5 @@
 // 离线缓存：第一次打开后，没网也能用（答辩现场网络不好时有用）
-const CACHE = "joke-20261106131852";
+const CACHE = "joke-20261106132858";
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
