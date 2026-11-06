@@ -31,20 +31,22 @@ body{font-family:var(--font);color:var(--ink);line-height:1.5;min-height:100vh;b
 button,input{font:inherit;color:inherit}
 button{border:0;background:none;cursor:pointer}
 :focus-visible{outline:4px solid #FFB020;outline-offset:3px;border-radius:8px}
-body.b-dusk{background:#BFB3C6} body.b-night{background:#2B3247}
+body{background:radial-gradient(900px 600px at 15% 0%,#E3ECF7 0%,rgba(227,236,247,0) 60%),radial-gradient(800px 600px at 100% 100%,#E9E3F3 0%,rgba(233,227,243,0) 60%),#C9D2DE;background-attachment:fixed}
+body.b-dusk{background:radial-gradient(900px 600px at 15% 0%,#E8D3D8 0%,rgba(232,211,216,0) 60%),radial-gradient(800px 600px at 100% 100%,#D6C6DE 0%,rgba(214,198,222,0) 60%),#BFB3C6;background-attachment:fixed}
+body.b-night{background:radial-gradient(900px 600px at 15% 0%,#3A4670 0%,rgba(58,70,112,0) 60%),radial-gradient(800px 600px at 100% 100%,#352D55 0%,rgba(53,45,85,0) 60%),#232A40;background-attachment:fixed}
 body.b-night .panel,body.b-night .panel .hint{color:#E8ECF5}
 body.b-night .panel .box,body.b-night .panel .box .hint,body.b-night .panel details{color:#3D4555}
 body.b-night .panel .box b,body.b-night .panel .box .t{color:#14171F}
 
 /* ================= 老人端：手机 ================= */
-.phone{--sky:linear-gradient(180deg,#7DB9E8 0%,#BFE0F5 75%,#D8ECF7 100%);--skyInk:#14171F;--skyInk2:#2E3A4F;--sun:#FFC83D;
+.phone{--far:#8FB4D4;--tree1:#4E9468;--tree2:#3F8259;--fence:rgba(255,255,255,.75);--sky:linear-gradient(180deg,#7DB9E8 0%,#BFE0F5 75%,#D8ECF7 100%);--skyInk:#14171F;--skyInk2:#2E3A4F;--sun:#FFC83D;
   --hill1:#9CCB9A;--hill2:#6FAE7C;--house:#F7F3EA;--roof:#C2593F;--win:#9FC6E0}
-.phone.t-dawn{--sky:linear-gradient(180deg,#9BB8DE 0%,#F6C9A8 70%,#F9DCC2 100%);--sun:#FFB25B;--hill1:#B9C79A;--hill2:#8BA879}
-.phone.t-dusk{--sky:linear-gradient(180deg,#46406E 0%,#C8607A 55%,#F2A66C 100%);--skyInk:#FFFFFF;--skyInk2:#FFE9DC;--sun:#FF9A4D;
+.phone.t-dawn{--far:#C7A9B9;--tree1:#7E9A6A;--tree2:#6A875B;--sky:linear-gradient(180deg,#9BB8DE 0%,#F6C9A8 70%,#F9DCC2 100%);--sun:#FFB25B;--hill1:#B9C79A;--hill2:#8BA879}
+.phone.t-dusk{--far:#7E5B7E;--tree1:#4C3D57;--tree2:#3F3249;--fence:rgba(255,220,200,.45);--sky:linear-gradient(180deg,#46406E 0%,#C8607A 55%,#F2A66C 100%);--skyInk:#FFFFFF;--skyInk2:#FFE9DC;--sun:#FF9A4D;
   --hill1:#7A5C6E;--hill2:#5A4560;--house:#E8D7CC;--roof:#8E3F3A;--win:#FFD27A}
-.phone.t-night{--sky:linear-gradient(180deg,#0E1633 0%,#25335F 70%,#34446F 100%);--skyInk:#FFFFFF;--skyInk2:#C9D4F2;--sun:#F3EFD6;
+.phone.t-night{--far:#2F3D66;--tree1:#1B2643;--tree2:#18213B;--fence:rgba(200,212,242,.25);--sky:linear-gradient(180deg,#0E1633 0%,#25335F 70%,#34446F 100%);--skyInk:#FFFFFF;--skyInk2:#C9D4F2;--sun:#F3EFD6;
   --hill1:#2B3A5E;--hill2:#1F2B49;--house:#5A6584;--roof:#3A4362;--win:#FFD27A}
-.phone{width:400px;height:840px;border-radius:46px;border:10px solid #1B1F2A;background:var(--mist);
+.phone{width:400px;height:840px;border-radius:50px;border:10px solid #1B1F2A;outline:2px solid #4A5163;outline-offset:-2px;background:var(--mist);
   position:relative;overflow:hidden;flex:none;box-shadow:0 40px 70px -30px rgba(10,20,40,.55)}
 .screen{position:absolute;inset:0;overflow-y:auto;display:none;flex-direction:column;background:var(--mist)}
 .screen.on{display:flex;animation:enter .28s ease-out}
@@ -56,8 +58,17 @@ body.b-night .panel .box b,body.b-night .panel .box .t{color:#14171F}
 @keyframes enterBack{from{transform:translateX(-36px);opacity:.3}}
 
 /* 首页天空插画 */
-.sky{background:var(--sky);color:var(--skyInk);padding:16px 16px 70px;position:relative;overflow:hidden;transition:background .8s}
-.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:96px;pointer-events:none}
+.sky{background:var(--sky);color:var(--skyInk);padding:16px 16px 92px;position:relative;overflow:hidden;transition:background .8s}
+.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;pointer-events:none}
+.land .far{fill:var(--far);opacity:.55;transition:fill .8s}
+.land .trunk{fill:#7A5A43} .land .leaf{fill:var(--tree1);transition:fill .8s} .land .leaf2{fill:var(--tree2);transition:fill .8s}
+.land .door{fill:#8C5A3C} .land .fence{stroke:var(--fence);fill:none}
+.land .smoke{stroke:rgba(255,255,255,.65);animation:smoke 4s ease-in-out infinite;transform-origin:40px 0}
+@keyframes smoke{0%,100%{opacity:.25;transform:translateY(2px)}50%{opacity:.75;transform:translateY(-3px)}}
+.t-day .land .smoke{opacity:0;animation:none}
+.birds{position:absolute;width:58px;top:108px;left:-70px;stroke:var(--skyInk);opacity:.45;animation:fly 26s linear infinite;pointer-events:none}
+@keyframes fly{to{transform:translateX(560px) translateY(-30px)}}
+.t-night .birds,.rainy .birds{display:none}
 .land .h1{fill:var(--hill1);transition:fill .8s} .land .h2{fill:var(--hill2);transition:fill .8s}
 .land .wall{fill:var(--house);transition:fill .8s} .land .roof{fill:var(--roof);transition:fill .8s}
 .land .win{fill:var(--win);transition:fill .8s}
@@ -73,13 +84,15 @@ body.b-night .panel .box b,body.b-night .panel .box .t{color:#14171F}
   background:rgba(255,255,255,.88);color:var(--ink)}
 .chip svg{width:24px;height:24px}
 .arc{display:block;width:100%;height:auto;margin:6px 0 0;overflow:visible;position:relative;z-index:1}
+.sunrot{animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .arc .path{fill:none;stroke:currentColor;stroke-opacity:.35;stroke-width:2;stroke-dasharray:3 6}
 .arc .lbl{font-size:13px;font-weight:700;fill:currentColor;fill-opacity:.85}
 .greet{font-size:2.1rem;font-weight:900;letter-spacing:.02em;line-height:1.2;margin-top:-6px;position:relative;z-index:1}
 .date{font-size:1rem;color:var(--skyInk2);font-weight:700;margin-top:6px;position:relative;z-index:1}
 
 /* 现在该做什么 */
-.now{margin:-40px 14px 0;background:var(--paper);border-radius:24px;padding:18px;position:relative;z-index:2;
+.now{margin:-46px 14px 0;background:var(--paper);border-radius:24px;padding:18px;position:relative;z-index:2;
   box-shadow:0 18px 34px -20px rgba(20,30,60,.5)}
 .now-tag{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:800;padding:4px 12px;border-radius:14px;background:var(--med-bg);color:var(--med)}
 .now-tag.alert{background:var(--sos-bg);color:var(--sos)}
@@ -474,7 +487,14 @@ body.b-night .panel .box b,body.b-night .panel .box .t{color:#14171F}
 /* ================= 子女端 ================= */
 .kid{width:330px;height:690px;border-radius:40px;border:9px solid #1B1F2A;background:#F4F6FA;position:relative;overflow:hidden;flex:none;
   box-shadow:0 30px 60px -30px rgba(10,20,40,.55);font-size:15px;align-self:flex-start}
-.kid .k-top{background:linear-gradient(160deg,#2550B8,#1A3A8C);color:#fff;padding:18px 16px 46px}
+.kid .k-top{background:linear-gradient(160deg,#2F5FCC,#1A3A8C);color:#fff;padding:18px 16px 56px;position:relative;overflow:hidden}
+.kid .k-deco{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.kid .k-mom{display:flex;align-items:center;gap:10px;margin-top:10px;position:relative}
+.kid .k-av{width:44px;height:44px;border-radius:50%;background:#8A6F5A;color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px;border:2px solid rgba(255,255,255,.6);flex:none}
+.kid .k-mom h3{margin-top:0!important;font-size:19px!important}
+.kid .k-there{display:flex;gap:6px;margin-top:10px;font-size:12px;position:relative;flex-wrap:wrap}
+.kid .k-there span{background:rgba(255,255,255,.14);border-radius:10px;padding:3px 9px;display:inline-flex;align-items:center;gap:5px}
+.kid .k-there svg{width:14px;height:14px}
 .kid .k-top .k-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;opacity:.85}
 .kid .k-top h3{font-size:22px;font-weight:900;margin-top:10px;display:flex;align-items:center;gap:8px}
 .kid .k-top h3 i{width:12px;height:12px;border-radius:50%;background:#5BE38E;box-shadow:0 0 0 4px rgba(91,227,142,.3)}
@@ -483,7 +503,7 @@ body.b-night .panel .box b,body.b-night .panel .box .t{color:#14171F}
 .kid.warn .k-top{background:linear-gradient(160deg,#B86E00,#7A4300)}
 .kid.warn .k-top h3 i{background:#FFD27A}
 .kid .k-top p{font-size:13px;opacity:.9;margin-top:2px}
-.kid .k-body{position:absolute;top:118px;left:0;right:0;bottom:66px;overflow-y:auto;padding:0 12px 14px;display:flex;flex-direction:column;gap:10px}
+.kid .k-body{position:absolute;top:150px;left:0;right:0;bottom:66px;overflow-y:auto;padding:0 12px 14px;display:flex;flex-direction:column;gap:10px}
 .kcard{background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 6px 14px -10px rgba(20,30,60,.4)}
 .kcard h5{font-size:13px;color:var(--ink2);font-weight:700;margin-bottom:6px}
 .kstats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center}
@@ -520,7 +540,35 @@ body.b-night .kid-label,body.b-night .elder-label{color:#C9D2E6}
 .wrapP{position:relative;margin-top:30px}
 
 /* ================= 演示台 ================= */
-.panel{width:330px;display:flex;flex-direction:column;gap:16px;padding-top:30px;color:var(--ink)}
+.panel{width:340px;display:flex;flex-direction:column;gap:14px;padding-top:30px;color:var(--ink)}
+.brand{display:flex;align-items:center;gap:14px}
+.brand svg{width:56px;height:56px;border-radius:16px;box-shadow:0 10px 20px -12px rgba(20,30,60,.6);flex:none}
+.brand h2{font-size:30px!important;line-height:1.1}
+.brand p{font-size:13px;color:#3D4555;font-weight:700}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline}
+.tl-head b{font-size:15px}
+.timeline{position:relative;margin:10px 0 26px}
+.tl-bar{position:absolute;left:0;right:0;top:12px;height:8px;border-radius:4px;background:linear-gradient(90deg,#25335F 0%,#F6C9A8 14%,#7DB9E8 30%,#BFE0F5 55%,#F2A66C 72%,#46406E 82%,#0E1633 100%);overflow:hidden}
+.tl-bar i{display:none}
+.timeline input{position:relative;width:100%;height:32px;margin:0;background:transparent;-webkit-appearance:none;appearance:none}
+.timeline input::-webkit-slider-runnable-track{height:32px;background:transparent}
+.timeline input::-moz-range-track{height:32px;background:transparent}
+.timeline input::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:3px;border-radius:50%;background:#fff;border:4px solid #1B1F2A;box-shadow:0 4px 10px -2px rgba(0,0,0,.4)}
+.timeline input::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:4px solid #1B1F2A}
+.tl-marks{position:absolute;left:0;right:0;top:30px;height:20px;font-size:11px;color:#4B5262;font-weight:700}
+.tl-marks span{position:absolute;transform:translateX(-50%);white-space:nowrap;display:flex;flex-direction:column;align-items:center}
+.tl-marks span::before{content:"";width:2px;height:6px;background:currentColor;opacity:.5;margin-bottom:1px}
+.tl-marks span.m{color:var(--med)}
+.tl-marks span.m::before{display:none}
+.tl-marks .pd{display:block;width:12px;height:12px;border-radius:50%;background:var(--med);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.grp{font-size:15px;display:block;margin-bottom:10px}
+.scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.scenes button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:14px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:800;color:var(--ink);transition:transform .14s,box-shadow .2s}
+.scenes button svg{width:22px;height:22px;color:#2550B8}
+.scenes button:hover{box-shadow:0 6px 14px -8px rgba(20,30,60,.5)}
+.scenes button:active{transform:scale(.95)}
+.linkbtn{background:none;border:0;color:#2550B8;font-weight:800;text-decoration:underline;cursor:pointer;font-size:inherit;padding:0}
+body.b-night .panel .grp,body.b-night .panel .tl-head b{color:#14171F}
 .panel h2{font-size:32px;font-weight:900;line-height:1.15;display:flex;align-items:center;gap:12px}
 .panel h2 svg{width:46px;height:46px;border-radius:13px}
 .panel .hint{font-size:14px;color:#3D4555;line-height:1.65}
@@ -617,11 +665,26 @@ details ul{padding-left:1.1em}
       <svg class="arc" id="arc" viewBox="0 0 360 130" aria-hidden="true"></svg>
       <div class="greet" id="greet">下午好，秀英阿姨</div>
       <div class="date" id="date"></div>
-      <svg class="land" viewBox="0 0 400 96" preserveAspectRatio="none" aria-hidden="true">
-        <path class="h1" d="M0 56c60-30 130-34 200-14s140 18 200-6v60H0z"/>
-        <g transform="translate(296 22)"><path class="roof" d="M-4 22L26 0l30 22z"/><rect class="wall" x="2" y="20" width="48" height="34"/><rect class="win" x="10" y="28" width="12" height="12" rx="2"/><rect class="roof" x="30" y="32" width="12" height="22" rx="2"/></g>
-        <path class="h2" d="M0 74c70-18 140-16 210-2s130 12 190-4v28H0z"/>
+      <svg class="land" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="far" d="M0 62 L38 40 L70 54 L112 26 L150 50 L190 34 L232 52 L270 30 L318 50 L360 36 L400 48 V120 H0z"/>
+        <path class="h1" d="M0 80c60-30 130-34 200-14s140 18 200-6v60H0z"/>
+        <g class="trees">
+          <g transform="translate(40 58)"><rect x="-2" y="10" width="4" height="12" class="trunk"/><ellipse cx="0" cy="6" rx="11" ry="13" class="leaf"/></g>
+          <g transform="translate(64 64)"><rect x="-1.5" y="8" width="3" height="10" class="trunk"/><ellipse cx="0" cy="4" rx="8" ry="10" class="leaf2"/></g>
+          <g transform="translate(250 60)"><rect x="-2" y="10" width="4" height="12" class="trunk"/><ellipse cx="0" cy="5" rx="12" ry="14" class="leaf2"/></g>
+        </g>
+        <g transform="translate(292 44)">
+          <path class="smoke" d="M40 -2c-4-6 4-10 0-16s4-10 0-16" fill="none" stroke-width="3" stroke-linecap="round"/>
+          <rect class="roof" x="36" y="2" width="8" height="12"/>
+          <path class="roof" d="M-6 24L28 0l34 24z"/><rect class="wall" x="0" y="22" width="56" height="38"/>
+          <rect class="win" x="8" y="30" width="14" height="13" rx="2"/><path d="M15 30v13M8 36.5h14" stroke="rgba(0,0,0,.18)" stroke-width="1.4"/>
+          <rect class="door" x="34" y="36" width="13" height="24" rx="2"/><circle cx="44" cy="49" r="1.2" fill="#FFD27A"/>
+        </g>
+        <path class="h2" d="M0 98c70-18 140-16 210-2s130 12 190-4v28H0z"/>
+        <g class="fence" stroke-width="2"><path d="M200 102h80M200 108h80"/><path d="M206 98v14M222 99v13M238 99v13M254 98v14M270 97v14"/></g>
+        <g class="flowers"><circle cx="120" cy="106" r="3" fill="#F48FB1"/><circle cx="132" cy="110" r="2.5" fill="#FFD54F"/><circle cx="146" cy="105" r="3" fill="#F06292"/><circle cx="350" cy="104" r="2.5" fill="#FFD54F"/><circle cx="364" cy="108" r="3" fill="#F48FB1"/></g>
       </svg>
+      <svg class="birds" viewBox="0 0 60 20" aria-hidden="true"><path d="M2 10q6-7 12 0q6-7 12 0M32 6q5-6 10 0q5-6 10 0" fill="none" stroke-width="2.2" stroke-linecap="round"/></svg>
     </div>
 
     <div class="now" id="nowCard" aria-live="polite"></div>
@@ -797,9 +860,10 @@ details ul{padding-left:1.1em}
 <div class="kid" id="kid" aria-label="女儿晓梅的手机">
   <div class="banner" id="banner"></div>
   <div class="k-top">
+    <svg class="k-deco" viewBox="0 0 330 120" preserveAspectRatio="none" aria-hidden="true"><circle cx="290" cy="22" r="40" fill="rgba(255,255,255,.07)"/><circle cx="20" cy="110" r="60" fill="rgba(255,255,255,.05)"/></svg>
     <div class="k-row"><span>今日 · 家人版</span><span id="kClock">14:30</span></div>
-    <h3><i></i><span id="kStatus">妈妈一切都好</span></h3>
-    <p id="kSub">最近一次动静：刚刚</p>
+    <div class="k-mom"><span class="k-av">秀</span><div><h3><i></i><span id="kStatus">妈妈一切都好</span></h3><p id="kSub">最近一次动静：刚刚</p></div></div>
+    <div class="k-there" id="kThere"></div>
   </div>
   <div class="k-body" id="kBody"></div>
   <div class="ktabs" role="tablist">
@@ -812,25 +876,41 @@ details ul{padding-left:1.1em}
 
 <!-- ============ 演示台 ============ -->
 <aside class="panel">
-  <h2><svg><use href="#logo"/></svg>今日</h2>
-  <p class="hint">给独居老人的生活助手。老人打开手机，先看到今天过到哪了、现在该做什么；子女在另一座城市，也知道妈妈今天好不好。</p>
+  <div class="brand"><svg><use href="#logo"/></svg><div><h2>今日</h2><p>面向独居老人的适老化生活服务 App</p></div></div>
+  <p class="hint">老人打开手机，先看到今天过到哪了、现在该做什么；子女在另一座城市，也知道妈妈今天好不好。</p>
   <button class="play" id="playBtn"><span class="pi"><svg id="playIco"><use href="#i-play"/></svg></span><span><b id="playTitle">播放：秀英阿姨的一天</b><span id="playSub">约 3 分半，自动演示全部功能，带字幕和配音</span></span></button>
-  <div class="box" id="voiceBox">
-    <b style="font-size:15px">内置语音</b>
-    <div style="font-size:20px;font-weight:900;margin:4px 0 2px">晓伊　甜美女声</div>
-    <p class="hint" style="font-size:13px">所有提示音都提前录好，放在文件里。任何浏览器、手机上听到的都是同一个声音，不依赖电脑自带的朗读。旁白用另一位声音（晓晓），和 App 里的声音区分开。</p>
-    <button id="vbTest" style="width:100%;min-height:48px;margin-top:10px;border-radius:12px;background:#1B1F2A;color:#fff;font-weight:800;font-size:15px">试听吃药提醒</button>
-  </div>
   <div class="box">
-    <div class="t" id="tLabel">14:30</div>
-    <input type="range" id="tRange" min="300" max="1380" step="5" aria-label="拖动模拟一天中的时间">
+    <div class="tl-head"><b>拖动时间</b><span class="t" id="tLabel">14:30</span></div>
+    <div class="timeline">
+      <div class="tl-bar" aria-hidden="true"><i id="tlFill"></i></div>
+      <input type="range" id="tRange" min="300" max="1380" step="5" aria-label="拖动模拟一天中的时间">
+      <div class="tl-marks" id="tlMarks" aria-hidden="true"></div>
+    </div>
     <div class="presets">
       <button data-t="450">7:30</button><button data-t="482">8:02</button><button data-t="735">12:15</button><button data-t="1070">17:50</button><button data-t="1290">21:30</button><button data-t="live" class="live" id="liveBtn">现在</button>
     </div>
-    <div class="presets" style="margin-top:10px">
-      <button id="dScam">模拟骗子来电</button><button id="dMsg">晓梅发来留言</button><button id="dIdle">4 小时没动静</button><button id="dVoice">说一句话</button><button id="dScan">拍药盒</button><button id="dLow">药快吃完</button><button id="dRain">下午下雨</button><button id="dNight">晚安小结</button>
+  </div>
+  <div class="box">
+    <b class="grp">单独演示一个场景</b>
+    <div class="scenes">
+      <button id="dScam"><svg><use href="#i-shield"/></svg>骗子来电</button>
+      <button id="dMsg"><svg><use href="#i-mic"/></svg>晓梅留言</button>
+      <button id="dIdle"><svg><use href="#i-heart"/></svg>没动静</button>
+      <button id="dVoice"><svg><use href="#i-mic"/></svg>说一句话</button>
+      <button id="dScan"><svg><use href="#i-cam"/></svg>拍药盒</button>
+      <button id="dLow"><svg><use href="#i-pill"/></svg>药快吃完</button>
+      <button id="dRain"><svg><use href="#i-rain"/></svg>下午下雨</button>
+      <button id="dNight"><svg><use href="#i-moon"/></svg>晚安小结</button>
     </div>
-    <p class="hint" style="margin-top:10px">拖动滑杆模拟一天。走到吃药时刻，妈妈的手机会全屏响铃；过了一小时还没吃，女儿手机会收到提醒。两部手机都可以点。</p>
+    <p class="hint" style="margin-top:10px">两部手机都可以直接点。声音用的是提前录好的晓伊（App）和晓晓（旁白）。<button id="vbTest" class="linkbtn">试听</button></p>
+  </div>
+<div class="box" id="qrBox">
+    <b style="font-size:15px">用手机扫一扫，亲手试试</b>
+    <div style="display:flex;gap:14px;align-items:center;margin-top:10px">
+      <div id="qr" style="width:132px;height:132px;flex:none;background:#fff;border-radius:12px;padding:8px"></div>
+      <p class="hint" id="qrHint" style="font-size:13px">手机上打开后只显示老人端。点浏览器的“分享”或“菜单”，选“添加到主屏幕”，桌面上就有“今日”图标。</p>
+    </div>
+    <p class="hint" id="qrUrl" style="font-size:12px;margin-top:8px;word-break:break-all"></p>
   </div>
   <details>
     <summary>设计规范</summary>
@@ -865,14 +945,7 @@ details ul{padding-left:1.1em}
       <li>晚上 9 点给老人一句鼓励，给子女一页小结，子女不用一条条翻消息。</li>
     </ul>
   </details>
-  <div class="box" id="qrBox">
-    <b style="font-size:15px">用手机扫一扫，亲手试试</b>
-    <div style="display:flex;gap:14px;align-items:center;margin-top:10px">
-      <div id="qr" style="width:132px;height:132px;flex:none;background:#fff;border-radius:12px;padding:8px"></div>
-      <p class="hint" id="qrHint" style="font-size:13px">手机上打开后只显示老人端。点浏览器的“分享”或“菜单”，选“添加到主屏幕”，桌面上就有“今日”图标。</p>
-    </div>
-    <p class="hint" id="qrUrl" style="font-size:12px;margin-top:8px;word-break:break-all"></p>
-  </div>
+  <p class="hint">用手机浏览器打开这个文件，会自动变成全屏 App 的样子，只显示老人端。传到网上之后，可以"添加到主屏幕"。</p>
 </aside>
 
 <div class="caption" id="caption" aria-live="polite"></div>
@@ -3246,7 +3319,8 @@ function drawArc(){
   if(phase(now)==="night"){const mx=now<360?60:300;
     sun=`<g transform="translate(${mx} 34)"><circle r="20" style="fill:var(--sun)"/><circle r="17" cx="9" cy="-6" fill="#1C2850"/></g>`;
   }else{const[sx,sy]=arcPt(now);
-    sun=`<circle cx="${sx}" cy="${sy}" r="32" style="fill:var(--sun)" opacity=".22"/><circle cx="${sx}" cy="${sy}" r="19" style="fill:var(--sun)"/>`;}
+    const rays=rainy&&now>=780?"":Array.from({length:12},(_,i)=>{const a=i*Math.PI/6;return`<line x1="${sx+Math.cos(a)*25}" y1="${sy+Math.sin(a)*25}" x2="${sx+Math.cos(a)*31}" y2="${sy+Math.sin(a)*31}" style="stroke:var(--sun)" stroke-width="3" stroke-linecap="round" opacity=".7"/>`;}).join("");
+    sun=`<g class="sunrot" style="transform-origin:${sx}px ${sy}px">${rays}</g><circle cx="${sx}" cy="${sy}" r="36" style="fill:var(--sun)" opacity=".16"/><circle cx="${sx}" cy="${sy}" r="19" style="fill:var(--sun)"/><circle cx="${sx-6}" cy="${sy-6}" r="6" fill="#fff" opacity=".35"/>`;}
   $("#arc").innerHTML=s.replace("</path>","")+"" ;
   $("#arc").insertAdjacentHTML("afterbegin",sun);
 }
@@ -3613,10 +3687,11 @@ function renderKid(){
   const bpHigh=bpToday&&bpToday.lv!=="ok";
   kid.classList.toggle("alert",alert);kid.classList.toggle("warn",!alert&&(missed.length>0||bpHigh));
   $("#kClock").textContent=hm(now);
+  $("#kThere").innerHTML=`<span><svg><use href="#i-${rainy&&now>=780?"rain":"sun"}"/></svg>妈妈那边 ${rainy&&now>=780?"小雨":"晴"} ${tempNow()}℃</span><span><svg><use href="#i-heart"/></svg>${bpToday?"血压 "+bpToday.s+"/"+bpToday.d:"今天没量血压"}</span>`;
   const careAlert=events[0]&&events[0].kind==="red"&&/没回应|不舒服|可疑|很高/.test(events[0].title)&&now-events[0].t<60;
   kid.classList.toggle("alert",alert||careAlert);
   $("#kStatus").textContent=alert?"妈妈发起了紧急求助":careAlert?events[0].title:missed.length?`妈妈${missed[0].when}的药还没吃`:bpHigh?`妈妈的血压${bpToday.lv==="danger"?"很高":"有点高"}`:"妈妈今天一切都好";
-  $("#kSub").textContent=alert?"已拨打 120，位置已发给你和建国":events.length?`最近一次动静：${hm(events[0].t)} ${events[0].title.replace("妈妈","")}`:"今天还没有动静";
+  $("#kSub").textContent=alert?"已拨打 120，位置已发给你和建国":events.length?`${hm(events[0].t)}　${events[0].title}`:"今天还没有动静";
   $("#kBadge").textContent=unread;$("#kBadge").style.display=unread?"":"none";
   $$("[data-ktab]").forEach(b=>b.setAttribute("aria-selected",b.dataset.ktab===kidTab));
   const lines=list=>list.length?list.map(e=>`<div class="kline ${e.kind}"><time>${hm(e.t)}</time><span class="kd"></span><span><b>${e.title}</b><br>${e.text}</span></div>`).join(""):`<p class="kempty">妈妈在“今日”里做的事，会出现在这里。</p>`;
@@ -3793,6 +3868,7 @@ document.addEventListener("click",e=>{
   if(el=q("[data-t]")){if(playing)return;const p=now;if(el.dataset.t==="live"){live=true;now=realNow();}else{live=false;now=+el.dataset.t;}render();if(now>p)checkAlarm(p);}
 });
 function syncSwitches(){$$("[data-sw]").forEach(b=>{const on=settings[b.dataset.sw];b.setAttribute("aria-checked",on);b.querySelector(".tl").textContent=on?"开":"关";});}
+$("#tlMarks").innerHTML=[[360,"6点"],[720,"12点"],[1080,"18点"],[1320,"22点"]].map(([m,t])=>`<span style="left:${(m-300)/1080*100}%">${t}</span>`).join("")+meds.map(x=>`<span class="m" style="left:${(x.t-300)/1080*100}%;top:-34px" title="${hm(x.t)} 吃药"><i class="pd"></i></span>`).join("");
 $("#tRange").addEventListener("input",e=>{if(playing)return;const p=now;live=false;now=+e.target.value;render();checkAlarm(p);});
 setInterval(()=>{if(live&&!playing){const p=now;now=realNow();render();checkAlarm(p);}},30000);
 
